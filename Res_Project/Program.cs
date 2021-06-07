@@ -72,12 +72,12 @@ namespace DumpingBuffer
             {
                 deltaCD = ms.VratiDeltu();
                 canSendToHistory = ms.IsReadyToSendDelta();
-
+                Thread.Sleep(2000);
                 if (canSendToHistory)
                 {
                     /* proxy.WriteToHistory(deltaCD.CollectionDescription_ANALOG_DIGITAL.DumpingPropertyCollection.Value1.ToString());*/
                     proxy.WriteDeltaToHistory(deltaCD);
-                    Thread.Sleep(2000);
+                    
                     ms.DeltaSent();
                    
                     

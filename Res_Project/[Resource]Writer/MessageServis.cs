@@ -182,6 +182,11 @@ namespace Res_Project.Resources
         public void DeltaSent()
         {
             deltaForSend = new DeltaCD();
+            deltaForSend.AnalogDigitalReady = false;
+            deltaForSend.ConsumerSourceReady = false;
+            deltaForSend.CustomLimitsetReady = false;
+            deltaForSend.MotionSensorReady = false;
+            deltaForSend.SingleMultipleReady = false;
         }
 
         public void AddMessageToCDAndIncrement(Message m)

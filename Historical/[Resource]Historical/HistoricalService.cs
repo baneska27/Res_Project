@@ -126,7 +126,7 @@ namespace Historical._Resource_Historical
             }
 
 
-
+            ld = new LD();
 
         }
 
