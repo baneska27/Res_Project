@@ -14,7 +14,7 @@ namespace Writer
     {
            static void ConnectToDumpingBuffer()
            {
-
+                
                 string address = "net.tcp://localhost:4000/IWriter";
                 NetTcpBinding binding = new NetTcpBinding();
 

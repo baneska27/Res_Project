@@ -76,15 +76,57 @@ namespace Historical._Resource_Historical
             ld.ListDescription.Add(new Description(delta.CollectionDescription_SINGLE_MULTIPLE.Id, historicals, delta.CollectionDescription_SINGLE_MULTIPLE.DataSet));
             historicals = new List<HistoricalProperty>();
 
-            if(first_time)
+            if (DeadBandCheckAnalog())
             {
                 UpisiUBazuAnalog();
-                UpisiUBazuDigital();
             }
-            else
-            {
                 
+                UpisiUBazuDigital();
+            
+            if(DeadBandCheckConsumer())
+            {
+                UpisiUBazuConsumer();
             }
+
+            if(DeadBandCheckSource())
+            {
+                UpisiUBazuSource();
+
+            }
+            if(DeadBandCheckCustom())
+            {
+                UpisiUBazuCustom();
+
+            }
+            if(DeadBandCheckLimitset())
+            {
+                UpisiUBazuLimitset();
+
+            }
+            if(DeadBandCheckMotion())
+            {
+                UpisiUBazuMotion();
+
+            }
+
+            if(DeadBandCheckSensor())
+            {
+                UpisiUBazuSensor();
+
+            }
+            if(DeadBandCheckSinglenode())
+            {
+                UpisiUBazuSinglenode();
+
+            }
+            if(DeadBandCheckMultiplenode())
+            {
+                UpisiUBazuMultiplenode();
+
+            }
+
+
+
 
         }
 
@@ -93,23 +135,27 @@ namespace Historical._Resource_Historical
             string path = "../../Baza/CodeAnalogCodeDigitalTable.txt";
             using (StreamWriter sw = new StreamWriter(path, true))
             {
-                for(int i=0;i<ld.ListDescription.Count;i++)
+                for (int i = 0; i < ld.ListDescription.Count; i++)
                 {
-                    if(ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODEANALOG_CODEDIGTIAL)
+                    if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODEANALOG_CODEDIGTIAL)
                     {
-                        for(int j=0;j<2;j++)
+                        for (int j = 0; j < 2; j++)
                         {
-                            if (ld.ListDescription[i].ListHistorical[j].CodeType== Res_Project.Resources.CodeType.CODE_ANALOG)
+                            if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_ANALOG)
                             {
-                                sw.WriteLine(ld.ListDescription[i].ListHistorical[j].CodeType.ToString() +";" + ld.ListDescription[i].ListHistorical[j].Value.ToString());
                                 
+                             
+                                    sw.WriteLine(ld.ListDescription[i].ListHistorical[j].CodeType.ToString() + ";" + ld.ListDescription[i].ListHistorical[j].Value.ToString() + ";" + DateTime.Now.ToString());
+
+                                
+
                             }
                         }
-                        
+
                     }
                 }
             }
-            
+
         }
 
         private void UpisiUBazuDigital()
@@ -125,7 +171,7 @@ namespace Historical._Resource_Historical
                         {
                             if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_DIGITAL)
                             {
-                                sw.WriteLine(ld.ListDescription[i].ListHistorical[j].CodeType.ToString() + ";" + ld.ListDescription[i].ListHistorical[j].Value.ToString());
+                                sw.WriteLine(ld.ListDescription[i].ListHistorical[j].CodeType.ToString() + ";" + ld.ListDescription[i].ListHistorical[j].Value.ToString() + ";" + DateTime.Now.ToString());
 
                             }
                         }
@@ -133,6 +179,200 @@ namespace Historical._Resource_Historical
                     }
                 }
             }
+
+        }
+
+        private void UpisiUBazuConsumer()
+        {
+            string path = "../../Baza/CodeConsumerCodeSourceTable.txt";
+            using (StreamWriter sw = new StreamWriter(path, true))
+            {
+                for (int i = 0; i < ld.ListDescription.Count; i++)
+                {
+                    if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODECONSUMER_CODESOURCE)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_CONSUMER)
+                            {
+                                sw.WriteLine(ld.ListDescription[i].ListHistorical[j].CodeType.ToString() + ";" + ld.ListDescription[i].ListHistorical[j].Value.ToString() + ";" + DateTime.Now.ToString());
+
+                            }
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+        private void UpisiUBazuSource()
+        {
+            string path = "../../Baza/CodeConsumerCodeSourceTable.txt";
+            using (StreamWriter sw = new StreamWriter(path, true))
+            {
+                for (int i = 0; i < ld.ListDescription.Count; i++)
+                {
+                    if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODECONSUMER_CODESOURCE)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_SOURCE)
+                            {
+                                sw.WriteLine(ld.ListDescription[i].ListHistorical[j].CodeType.ToString() + ";" + ld.ListDescription[i].ListHistorical[j].Value.ToString() + ";" + DateTime.Now.ToString());
+
+                            }
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+        private void UpisiUBazuCustom()
+        {
+            string path = "../../Baza/CodeCustomCodeLimitsetTable.txt";
+            using (StreamWriter sw = new StreamWriter(path, true))
+            {
+                for (int i = 0; i < ld.ListDescription.Count; i++)
+                {
+                    if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODECUSTOM_CODELIMITSET)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_CUSTOM)
+                            {
+                                sw.WriteLine(ld.ListDescription[i].ListHistorical[j].CodeType.ToString() + ";" + ld.ListDescription[i].ListHistorical[j].Value.ToString() + ";" + DateTime.Now.ToString());
+
+                            }
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+        private void UpisiUBazuLimitset()
+        {
+            string path = "../../Baza/CodeCustomCodeLimitsetTable.txt";
+            using (StreamWriter sw = new StreamWriter(path, true))
+            {
+                for (int i = 0; i < ld.ListDescription.Count; i++)
+                {
+                    if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODECUSTOM_CODELIMITSET)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_LIMITSET)
+                            {
+                                sw.WriteLine(ld.ListDescription[i].ListHistorical[j].CodeType.ToString() + ";" + ld.ListDescription[i].ListHistorical[j].Value.ToString() + ";" + DateTime.Now.ToString());
+
+                            }
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+
+        private void UpisiUBazuMotion()
+        {
+            string path = "../../Baza/CodeMotionCodeSensorTable.txt";
+            using (StreamWriter sw = new StreamWriter(path, true))
+            {
+                for (int i = 0; i < ld.ListDescription.Count; i++)
+                {
+                    if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODEMOTION_CODESENSOR)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_MOTION)
+                            {
+                                sw.WriteLine(ld.ListDescription[i].ListHistorical[j].CodeType.ToString() + ";" + ld.ListDescription[i].ListHistorical[j].Value.ToString() + ";" + DateTime.Now.ToString());
+
+                            }
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+        private void UpisiUBazuSensor()
+        {
+            string path = "../../Baza/CodeMotionCodeSensorTable.txt";
+            using (StreamWriter sw = new StreamWriter(path, true))
+            {
+                for (int i = 0; i < ld.ListDescription.Count; i++)
+                {
+                    if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODEMOTION_CODESENSOR)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_SENSOR)
+                            {
+                                sw.WriteLine(ld.ListDescription[i].ListHistorical[j].CodeType.ToString() + ";" + ld.ListDescription[i].ListHistorical[j].Value.ToString() + ";" + DateTime.Now.ToString());
+
+                            }
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+        private void UpisiUBazuSinglenode()
+        {
+            string path = "../../Baza/CodeSinglenodeCodeMultiplenodeTable.txt";
+            using (StreamWriter sw = new StreamWriter(path, true))
+            {
+                for (int i = 0; i < ld.ListDescription.Count; i++)
+                {
+                    if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODESINGLENODE_CODEMULTIPLENODE)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_SINGLENODE)
+                            {
+                                sw.WriteLine(ld.ListDescription[i].ListHistorical[j].CodeType.ToString() + ";" + ld.ListDescription[i].ListHistorical[j].Value.ToString() + ";" + DateTime.Now.ToString());
+
+                            }
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+        private void UpisiUBazuMultiplenode()
+        {
+            string path = "../../Baza/CodeSinglenodeCodeMultiplenodeTable.txt";
+            using (StreamWriter sw = new StreamWriter(path, true))
+            {
+                for (int i = 0; i < ld.ListDescription.Count; i++)
+                {
+                    if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODESINGLENODE_CODEMULTIPLENODE)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_MULTIPLENODE)
+                            {
+                                sw.WriteLine(ld.ListDescription[i].ListHistorical[j].CodeType.ToString() + ";" + ld.ListDescription[i].ListHistorical[j].Value.ToString() + ";" + DateTime.Now.ToString());
+
+                            }
+                        }
+
+                    }
+                }
+            }
+
         }
 
 
@@ -142,9 +382,715 @@ namespace Historical._Resource_Historical
             Console.WriteLine(deltaCD);
         }
 
-        public bool DeadBandCheck()
+        public bool DeadBandCheckAnalog()
         {
-            throw new NotImplementedException();
+            string path = "../../Baza/CodeAnalogCodeDigitalTable.txt";
+            FileStream stream = new FileStream(path, FileMode.Open);
+            StreamReader sr = new StreamReader(stream);
+            string line = "";
+            string type = "";
+            string value = "";
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                string[] data = line.Split(';');
+                type = data[0];
+                if (type.Equals("CODE_ANALOG"))
+                {
+
+                    value = data[1];
+                }
+
+                if (line == null)
+                {
+                    break;
+                }
+            }
+
+            sr.Close();
+
+            float vrednostP = -1;
+            for (int i = 0; i < ld.ListDescription.Count; i++)
+            {
+                if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODEANALOG_CODEDIGTIAL)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_ANALOG)
+                        {
+
+
+                            vrednostP =(float) ld.ListDescription[i].ListHistorical[j].Value;
+
+
+
+                        }
+                    }
+
+                }
+            }
+
+
+
+
+            float vrednost = (float)int.Parse(value);
+
+
+
+
+            float granicaDonja = vrednost - ((vrednost / 100) * 2);
+            float granicaGornja = vrednost + ((vrednost / 100) * 2);
+
+
+
+
+
+
+
+
+
+
+            if (vrednostP < granicaDonja || vrednostP > granicaGornja)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool DeadBandCheckConsumer()
+        {
+            string path = "../../Baza/CodeConsumerCodeSourceTable.txt";
+            FileStream stream = new FileStream(path, FileMode.Open);
+            StreamReader sr = new StreamReader(stream);
+            string line = "";
+            string type = "";
+            string value = "";
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                string[] data = line.Split(';');
+                type = data[0];
+                if (type.Equals("CODE_CONSUMER"))
+                {
+
+                    value = data[1];
+                }
+
+                if (line == null)
+                {
+                    break;
+                }
+            }
+
+            sr.Close();
+
+            float vrednostP = -1;
+            for (int i = 0; i < ld.ListDescription.Count; i++)
+            {
+                if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODECONSUMER_CODESOURCE)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_CONSUMER)
+                        {
+
+
+                            vrednostP = (float)ld.ListDescription[i].ListHistorical[j].Value;
+
+
+
+                        }
+                    }
+
+                }
+            }
+
+
+
+
+            float vrednost = (float)int.Parse(value);
+
+
+
+
+            float granicaDonja = vrednost - ((vrednost / 100) * 2);
+            float granicaGornja = vrednost + ((vrednost / 100) * 2);
+
+
+
+
+
+
+
+
+
+
+            if (vrednostP < granicaDonja || vrednostP > granicaGornja)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool DeadBandCheckSource()
+        {
+            string path = "../../Baza/CodeConsumerCodeSourceTable.txt";
+            FileStream stream = new FileStream(path, FileMode.Open);
+            StreamReader sr = new StreamReader(stream);
+            string line = "";
+            string type = "";
+            string value = "";
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                string[] data = line.Split(';');
+                type = data[0];
+                if (type.Equals("CODE_SOURCE"))
+                {
+
+                    value = data[1];
+                }
+
+                if (line == null)
+                {
+                    break;
+                }
+            }
+
+            sr.Close();
+
+            float vrednostP = -1;
+            for (int i = 0; i < ld.ListDescription.Count; i++)
+            {
+                if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODECONSUMER_CODESOURCE)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_SOURCE)
+                        {
+
+
+                            vrednostP = (float)ld.ListDescription[i].ListHistorical[j].Value;
+
+
+
+                        }
+                    }
+
+                }
+            }
+
+
+
+
+            float vrednost = (float)int.Parse(value);
+
+
+
+
+            float granicaDonja = vrednost - ((vrednost / 100) * 2);
+            float granicaGornja = vrednost + ((vrednost / 100) * 2);
+
+
+
+
+
+
+
+
+
+
+            if (vrednostP < granicaDonja || vrednostP > granicaGornja)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool DeadBandCheckCustom()
+        {
+            string path = "../../Baza/CodeCustomCodeLimitsetTable.txt";
+            FileStream stream = new FileStream(path, FileMode.Open);
+            StreamReader sr = new StreamReader(stream);
+            string line = "";
+            string type = "";
+            string value = "";
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                string[] data = line.Split(';');
+                type = data[0];
+                if (type.Equals("CODE_CUSTOM"))
+                {
+
+                    value = data[1];
+                }
+
+                if (line == null)
+                {
+                    break;
+                }
+            }
+
+            sr.Close();
+
+            float vrednostP = -1;
+            for (int i = 0; i < ld.ListDescription.Count; i++)
+            {
+                if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODECUSTOM_CODELIMITSET)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_CUSTOM)
+                        {
+
+
+                            vrednostP = (float)ld.ListDescription[i].ListHistorical[j].Value;
+
+
+
+                        }
+                    }
+
+                }
+            }
+
+
+
+
+            float vrednost = (float)int.Parse(value);
+
+
+
+
+            float granicaDonja = vrednost - ((vrednost / 100) * 2);
+            float granicaGornja = vrednost + ((vrednost / 100) * 2);
+
+
+
+
+
+
+
+
+
+
+            if (vrednostP < granicaDonja || vrednostP > granicaGornja)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool DeadBandCheckLimitset()
+        {
+            string path = "../../Baza/CodeCustomCodeLimitsetTable.txt";
+            FileStream stream = new FileStream(path, FileMode.Open);
+            StreamReader sr = new StreamReader(stream);
+            string line = "";
+            string type = "";
+            string value = "";
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                string[] data = line.Split(';');
+                type = data[0];
+                if (type.Equals("CODE_LIMITSET"))
+                {
+
+                    value = data[1];
+                }
+
+                if (line == null)
+                {
+                    break;
+                }
+            }
+
+            sr.Close();
+
+            float vrednostP = -1;
+            for (int i = 0; i < ld.ListDescription.Count; i++)
+            {
+                if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODECUSTOM_CODELIMITSET)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_LIMITSET)
+                        {
+
+
+                            vrednostP = (float)ld.ListDescription[i].ListHistorical[j].Value;
+
+
+
+                        }
+                    }
+
+                }
+            }
+
+
+
+
+            float vrednost = (float)int.Parse(value);
+
+
+
+
+            float granicaDonja = vrednost - ((vrednost / 100) * 2);
+            float granicaGornja = vrednost + ((vrednost / 100) * 2);
+
+
+
+
+
+
+
+
+
+
+            if (vrednostP < granicaDonja || vrednostP > granicaGornja)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool DeadBandCheckMotion()
+        {
+            string path = "../../Baza/CodeMotionCodeSensorTable.txt";
+            FileStream stream = new FileStream(path, FileMode.Open);
+            StreamReader sr = new StreamReader(stream);
+            string line = "";
+            string type = "";
+            string value = "";
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                string[] data = line.Split(';');
+                type = data[0];
+                if (type.Equals("CODE_MOTION"))
+                {
+
+                    value = data[1];
+                }
+
+                if (line == null)
+                {
+                    break;
+                }
+            }
+
+            sr.Close();
+
+            float vrednostP = -1;
+            for (int i = 0; i < ld.ListDescription.Count; i++)
+            {
+                if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODEMOTION_CODESENSOR)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_MOTION)
+                        {
+
+
+                            vrednostP = (float)ld.ListDescription[i].ListHistorical[j].Value;
+
+
+
+                        }
+                    }
+
+                }
+            }
+
+
+
+
+            float vrednost = (float)int.Parse(value);
+
+
+
+
+            float granicaDonja = vrednost - ((vrednost / 100) * 2);
+            float granicaGornja = vrednost + ((vrednost / 100) * 2);
+
+
+
+
+
+
+
+
+
+
+            if (vrednostP < granicaDonja || vrednostP > granicaGornja)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool DeadBandCheckSensor()
+        {
+            string path = "../../Baza/CodeMotionCodeSensorTable.txt";
+            FileStream stream = new FileStream(path, FileMode.Open);
+            StreamReader sr = new StreamReader(stream);
+            string line = "";
+            string type = "";
+            string value = "";
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                string[] data = line.Split(';');
+                type = data[0];
+                if (type.Equals("CODE_SENSOR"))
+                {
+
+                    value = data[1];
+                }
+
+                if (line == null)
+                {
+                    break;
+                }
+            }
+
+            sr.Close();
+
+            float vrednostP = -1;
+            for (int i = 0; i < ld.ListDescription.Count; i++)
+            {
+                if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODEMOTION_CODESENSOR)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_SENSOR)
+                        {
+
+
+                            vrednostP = (float)ld.ListDescription[i].ListHistorical[j].Value;
+
+
+
+                        }
+                    }
+
+                }
+            }
+
+
+
+
+            float vrednost = (float)int.Parse(value);
+
+
+
+
+            float granicaDonja = vrednost - ((vrednost / 100) * 2);
+            float granicaGornja = vrednost + ((vrednost / 100) * 2);
+
+
+
+
+
+
+
+
+
+
+            if (vrednostP < granicaDonja || vrednostP > granicaGornja)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool DeadBandCheckSinglenode()
+        {
+            string path = "../../Baza/CodeSinglenodeCodeMultiplenodeTable.txt";
+            FileStream stream = new FileStream(path, FileMode.Open);
+            StreamReader sr = new StreamReader(stream);
+            string line = "";
+            string type = "";
+            string value = "";
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                string[] data = line.Split(';');
+                type = data[0];
+                if (type.Equals("CODE_SINGLENODE"))
+                {
+
+                    value = data[1];
+                }
+
+                if (line == null)
+                {
+                    break;
+                }
+            }
+
+            sr.Close();
+
+            float vrednostP = -1;
+            for (int i = 0; i < ld.ListDescription.Count; i++)
+            {
+                if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODESINGLENODE_CODEMULTIPLENODE)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_SINGLENODE)
+                        {
+
+
+                            vrednostP = (float)ld.ListDescription[i].ListHistorical[j].Value;
+
+
+
+                        }
+                    }
+
+                }
+            }
+
+
+
+
+            float vrednost = (float)int.Parse(value);
+
+
+
+
+            float granicaDonja = vrednost - ((vrednost / 100) * 2);
+            float granicaGornja = vrednost + ((vrednost / 100) * 2);
+
+
+
+
+
+
+
+
+
+
+            if (vrednostP < granicaDonja || vrednostP > granicaGornja)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool DeadBandCheckMultiplenode()
+        {
+            string path = "../../Baza/CodeSinglenodeCodeMultiplenodeTable.txt";
+            FileStream stream = new FileStream(path, FileMode.Open);
+            StreamReader sr = new StreamReader(stream);
+            string line = "";
+            string type = "";
+            string value = "";
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                string[] data = line.Split(';');
+                type = data[0];
+                if (type.Equals("CODE_MULTIPLENODE"))
+                {
+
+                    value = data[1];
+                }
+
+                if (line == null)
+                {
+                    break;
+                }
+            }
+
+            sr.Close();
+
+            float vrednostP = -1;
+            for (int i = 0; i < ld.ListDescription.Count; i++)
+            {
+                if (ld.ListDescription[i].DataSet.Num == EnumberOfDataSet.CODESINGLENODE_CODEMULTIPLENODE)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (ld.ListDescription[i].ListHistorical[j].CodeType == Res_Project.Resources.CodeType.CODE_MULTIPLENODE)
+                        {
+
+
+                            vrednostP = (float)ld.ListDescription[i].ListHistorical[j].Value;
+
+
+
+                        }
+                    }
+
+                }
+            }
+
+
+
+
+            float vrednost = (float)int.Parse(value);
+
+
+
+
+            float granicaDonja = vrednost - ((vrednost / 100) * 2);
+            float granicaGornja = vrednost + ((vrednost / 100) * 2);
+
+
+
+
+
+
+
+
+
+
+            if (vrednostP < granicaDonja || vrednostP > granicaGornja)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
 
