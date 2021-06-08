@@ -33,6 +33,15 @@ namespace Res_Project
 
         public Message(DateTime dateTime,CodeType code,int geoId,int consumption)
         {
+            if (geoId == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (consumption == null)
+            {
+                throw new ArgumentNullException();
+            }
             this.dateTime = dateTime;
             this.code = code;
             this.geoId = geoId;

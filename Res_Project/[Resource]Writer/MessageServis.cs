@@ -170,11 +170,36 @@ namespace Res_Project.Resources
             
         public Message StringToMessageConvert(string message)
         {
+            if (message == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (message == string.Empty)
+            {
+                throw new ArgumentException();
+            }
             string[] podaci = message.Split('+');
 
-            DateTime dt = DateTime.Parse(podaci[0]);
+            if (podaci.Length < 3)
+            {
+                throw new ArgumentException();
+            }
+            Message a = new Message();
+            try
+            {
+                a.DateTime = DateTime.Parse(podaci[0]);
+                a.Code = (CodeType) Int32.Parse(podaci[1]);
+                a.GeoId = Int32.Parse(podaci[2]);
+                a.Consumption = Int32.Parse(podaci[3]);
 
-            Message a = new Message(dt, (CodeType)Int32.Parse(podaci[1]), Int32.Parse(podaci[2]), Int32.Parse(podaci[3]));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw new OverflowException();
+            }
+
 
             return a;
         }
