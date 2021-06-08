@@ -19,6 +19,10 @@ namespace Common._Historical_SharedClasses
 
         public Description(int id,List<HistoricalProperty> historicalProperties,DataSet dataSet)
         {
+            if (id == null)
+            {
+                throw new ArgumentNullException();
+            }
             this.id = id;
             ListHistorical = historicalProperties;
             this.dataSet = dataSet;

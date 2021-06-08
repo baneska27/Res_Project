@@ -18,6 +18,10 @@ namespace Common._Historical_SharedClasses
         public HistoricalProperty(CodeType codeType,int value)
         {
             this.codeType = codeType;
+            if (value == null)
+            {
+                throw new ArgumentNullException();
+            }
             this.value = value;
         }
     }

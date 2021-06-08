@@ -16,5 +16,10 @@ namespace Common._Historical_SharedClasses
         {
             ListDescription = new List<Description>();
         }
+
+        public LD(List<Description> descriptions)
+        {
+            ListDescription = descriptions;
+        }
     }
 }

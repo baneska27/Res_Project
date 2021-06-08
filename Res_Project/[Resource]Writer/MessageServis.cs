@@ -163,6 +163,11 @@ namespace Res_Project.Resources
 
         }
 
+        public int vratiDumpingID()
+        {
+            return dumpingId;
+        }
+        
         public DeltaCD VratiDeltu()
         {
             return deltaForSend;

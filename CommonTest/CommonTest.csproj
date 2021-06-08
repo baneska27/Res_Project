@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{749BDCC6-10E6-4312-92D8-B6E5DA78D58F}</ProjectGuid>
+    <ProjectGuid>{51432757-05CA-4ABE-9DEA-BBD36382B306}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DumpingBufferServerTest</RootNamespace>
-    <AssemblyName>DumpingBufferServerTest</AssemblyName>
+    <RootNamespace>CommonTest</RootNamespace>
+    <AssemblyName>CommonTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -66,8 +66,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MessageServisTest.cs" />
-    <Compile Include="MessageTest.cs" />
+    <Compile Include="DescriptionTest.cs" />
+    <Compile Include="HistoricalPropertyTest.cs" />
+    <Compile Include="LDTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -77,10 +78,6 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{C913CC23-5CD5-4648-B3AB-D6E19B2ED17E}</Project>
       <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Res_Project\DumpingBufferServer.csproj">
-      <Project>{6788FCFC-5904-4CD4-A91D-6EFAB79AADBE}</Project>
-      <Name>DumpingBufferServer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
